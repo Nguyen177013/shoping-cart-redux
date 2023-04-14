@@ -5,8 +5,11 @@ import { useSelector } from "react-redux";
 import "../assets/styles/Layout.css";
 import CartItems from "../pages/CartItems";
 const Layout = () => {
-  const { totalQuantity } = useSelector(state => state.cart);
-  let total = totalQuantity;
+  const { itemsList } = useSelector(state => state.cart);
+  let total = itemsList.reduce((first, last)=>{
+        return first + last.totalPrice;
+  }, 0);
+  console.log(total);
   const {showCart} = useSelector(state => state.cart);
   return (
     <React.Fragment>
